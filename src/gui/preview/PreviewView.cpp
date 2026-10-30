@@ -88,7 +88,7 @@ PreviewView::PreviewView(std::unique_ptr<VideoBuffer> newSavePreview):
 	reportButton->Enabled = bool(user);
 	AddComponent(reportButton);
 
-	openButton = new ui::Button(ui::Point(0, Size.Y-19), ui::Point(51, 19), "Open");
+	openButton = new ui::Button(ui::Point(0, Size.Y-19), ui::Point(51, 19), "打开");
 	openButton->Appearance.HorizontalAlign = ui::Appearance::AlignLeft;
 	openButton->Appearance.VerticalAlign = ui::Appearance::AlignMiddle;
 	openButton->SetIcon(IconOpen);
@@ -410,11 +410,11 @@ void PreviewView::OnTick()
 		{
 			reportSaveRequest->Finish();
 			c->Exit();
-			new InformationMessage("Information", "Report submitted", false);
+			new InformationMessage("信息", "Report submitted", false);
 		}
 		catch (const http::RequestError &ex)
 		{
-			new ErrorMessage("Error", "Unable to file report: " + ByteString(ex.what()).FromUtf8());
+			new ErrorMessage("错误", "Unable to file report: " + ByteString(ex.what()).FromUtf8());
 		}
 		reportSaveRequest.reset();
 	}
@@ -625,7 +625,7 @@ void PreviewView::submitComment()
 		}
 		else if (comment.length() < 4)
 		{
-			new ErrorMessage("Error", "Comment is too short");
+			new ErrorMessage("错误", "Comment is too short");
 		}
 		else
 		{
