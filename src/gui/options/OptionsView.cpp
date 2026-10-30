@@ -77,7 +77,7 @@ public:
 		direction->SetSnapPoints(5, 5, 2);
 		AddComponent(direction);
 
-		ui::Button * okayButton = new ui::Button(ui::Point(0, Size.Y - 17), ui::Point(Size.X, 17), "确定");
+		ui::Button * okayButton = new ui::Button(ui::Point(0, Size.Y - 17), ui::Point(Size.X, 17), "OK");
 		okayButton->Appearance.HorizontalAlign = ui::Appearance::AlignCentre;
 		okayButton->Appearance.VerticalAlign = ui::Appearance::AlignMiddle;
 		okayButton->Appearance.BorderInactive = ui::Colour(200, 200, 200);
@@ -114,7 +114,7 @@ OptionsView::OptionsView() : ui::Window(ui::Point(-1, -1), ui::Point(320, 340))
 	};
 	
 	{
-		auto *label = new ui::Label(ui::Point(4, 1), ui::Point(Size.X-8, 22), "设置");
+		auto *label = new ui::Label(ui::Point(4, 1), ui::Point(Size.X-8, 22), "Settings");
 		label->SetTextColour(style::Colour::InformationTitle);
 		label->Appearance.HorizontalAlign = ui::Appearance::AlignLeft;
 		label->Appearance.VerticalAlign = ui::Appearance::AlignMiddle;
@@ -250,10 +250,10 @@ OptionsView::OptionsView() : ui::Window(ui::Point(-1, -1), ui::Point(320, 340))
 		c->SetWaterEqualisation(waterEqualisation->GetChecked());
 	});
 	airMode = addDropDown("Air simulation mode", {
-		{ "开", AIR_ON },
+		{ "On", AIR_ON },
 		{ "Pressure off", AIR_PRESSUREOFF },
 		{ "Velocity off", AIR_VELOCITYOFF },
-		{ "关", AIR_OFF },
+		{ "Off", AIR_OFF },
 		{ "No update", AIR_NOUPDATE },
 	}, [this] {
 		c->SetAirMode(airMode->GetOption().second);
@@ -291,7 +291,7 @@ OptionsView::OptionsView() : ui::Window(ui::Point(-1, -1), ui::Point(320, 340))
 	});
 	gravityMode = addDropDown("Gravity simulation mode", {
 		{ "Vertical", GRAV_VERTICAL },
-		{ "关", GRAV_OFF },
+		{ "Off", GRAV_OFF },
 		{ "Radial", GRAV_RADIAL },
 		{ "Custom", GRAV_CUSTOM },
 	}, [this] {
@@ -331,7 +331,7 @@ OptionsView::OptionsView() : ui::Window(ui::Point(-1, -1), ui::Point(320, 340))
 	}, [this](bool defocus) {
 		UpdateDrawLimit(defocus);
 	});
-	addButtonWithLabel("重置", " - Set both limits to sane defaults", [this]{
+	addButtonWithLabel("Reset", " - Set both limits to sane defaults", [this]{
 		c->SetFpsLimit(DefaultFpsLimit);
 		c->SetDrawLimit(DefaultDrawLimit);
 	});
@@ -490,7 +490,7 @@ OptionsView::OptionsView() : ui::Window(ui::Point(-1, -1), ui::Point(320, 340))
 	});
 
 	{
-		ui::Button *ok = new ui::Button(ui::Point(0, Size.Y-16), ui::Point(Size.X, 16), "确定");
+		ui::Button *ok = new ui::Button(ui::Point(0, Size.Y-16), ui::Point(Size.X, 16), "OK");
 		ok->SetActionCallback({ [this] {
 			c->Exit();
 		} });
