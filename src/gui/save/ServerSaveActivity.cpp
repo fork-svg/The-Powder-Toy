@@ -91,7 +91,7 @@ ServerSaveActivity::ServerSaveActivity(std::unique_ptr<SaveInfo> newSave, OnUplo
 	descriptionField->Appearance.HorizontalAlign = ui::Appearance::AlignLeft;
 	AddComponent(descriptionField);
 
-	publishedCheckbox = new ui::Checkbox(ui::Point(8, 45), ui::Point((Size.X/2)-80, 16), "Publish", "");
+	publishedCheckbox = new ui::Checkbox(ui::Point(8, 45), ui::Point((Size.X/2)-80, 16), "发布", "");
 	if (!save->IsOwn())
 	{
 		//Save is not owned by the user, disable by default
@@ -108,7 +108,7 @@ ServerSaveActivity::ServerSaveActivity(std::unique_ptr<SaveInfo> newSave, OnUplo
 	pausedCheckbox->SetChecked(save->GetGameSave()->paused);
 	AddComponent(pausedCheckbox);
 
-	ui::Button * cancelButton = new ui::Button(ui::Point(0, Size.Y-16), ui::Point((Size.X/2)-75, 16), "Cancel");
+	ui::Button * cancelButton = new ui::Button(ui::Point(0, Size.Y-16), ui::Point((Size.X/2)-75, 16), "取消");
 	cancelButton->Appearance.HorizontalAlign = ui::Appearance::AlignLeft;
 	cancelButton->Appearance.VerticalAlign = ui::Appearance::AlignMiddle;
 	cancelButton->Appearance.BorderInactive = ui::Colour(200, 200, 200);
@@ -118,7 +118,7 @@ ServerSaveActivity::ServerSaveActivity(std::unique_ptr<SaveInfo> newSave, OnUplo
 	AddComponent(cancelButton);
 	SetCancelButton(cancelButton);
 
-	ui::Button * okayButton = new ui::Button(ui::Point((Size.X/2)-76, Size.Y-16), ui::Point(76, 16), "Save");
+	ui::Button * okayButton = new ui::Button(ui::Point((Size.X/2)-76, Size.Y-16), ui::Point(76, 16), "保存");
 	okayButton->Appearance.HorizontalAlign = ui::Appearance::AlignLeft;
 	okayButton->Appearance.VerticalAlign = ui::Appearance::AlignMiddle;
 	okayButton->Appearance.TextInactive = style::Colour::InformationTitle;
@@ -178,7 +178,7 @@ void ServerSaveActivity::NotifyDone(Task * task)
 	if(!task->GetSuccess())
 	{
 		Exit();
-		new ErrorMessage("Error", task->GetError());
+		new ErrorMessage("错误", task->GetError());
 	}
 	else
 	{
@@ -194,12 +194,12 @@ void ServerSaveActivity::Save()
 {
 	if (!nameField->GetText().length())
 	{
-		new ErrorMessage("Error", "You must specify a save name.");
+		new ErrorMessage("错误", "You must specify a save name.");
 		return;
 	}
 	if (!save->IsOwn() && publishedCheckbox->GetChecked())
 	{
-		new ConfirmPrompt("Publish", "This save was created by " + save->GetUserName().FromUtf8() + ", you're about to publish this under your own name; If you haven't been given permission by the author to do so, please uncheck the publish box, otherwise continue", { [this] {
+		new ConfirmPrompt("发布", "This save was created by " + save->GetUserName().FromUtf8() + ", you're about to publish this under your own name; If you haven't been given permission by the author to do so, please uncheck the publish box, otherwise continue", { [this] {
 			saveUpload();
 		} });
 	}
@@ -381,7 +381,7 @@ void ServerSaveActivity::OnTick()
 		}
 		catch (const http::RequestError &ex)
 		{
-			new ErrorMessage("Error", "Upload failed with error:\n" + ByteString(ex.what()).FromUtf8());
+			new ErrorMessage("错误", "Upload failed with error:\n" + ByteString(ex.what()).FromUtf8());
 		}
 		uploadSaveRequest.reset();
 	}
