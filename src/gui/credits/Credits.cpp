@@ -143,7 +143,7 @@ Credits::Credits():
 
 	scrollPanel->InnerSize = ui::Point(scrollPanel->Size.X, nextY);
 
-	auto *closeButton = new ui::Button({ 0, Size.Y - 12 }, { Size.X, 12 }, "Close");
+	auto *closeButton = new ui::Button({ 0, Size.Y - 12 }, { Size.X, 12 }, "关闭");
 	closeButton->SetActionCallback({
 	[this] {
 		CloseActiveWindow();
