@@ -159,7 +159,7 @@ void FileBrowserActivity::RenameSave(int index)
 			newName = ByteString::Build(directory, PATH_SEP_CHAR, newName, ".cps");
 			if (!Platform::RenameFile(file->GetName(), newName, false))
 			{
-				new ErrorMessage("Error", "Could not rename file");
+				new ErrorMessage("错误", "Could not rename file");
 			}
 			else
 			{
@@ -168,7 +168,7 @@ void FileBrowserActivity::RenameSave(int index)
 		}
 		else
 		{
-			new ErrorMessage("Error", "No save name given");
+			new ErrorMessage("错误", "No save name given");
 		}
 	} });
 }
