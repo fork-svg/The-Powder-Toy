@@ -545,12 +545,12 @@ void SearchView::NotifySaveListChanged(SearchModel * sender)
 		loadingSpinner->Visible = false;
 		if (!errorLabel)
 		{
-			errorLabel = new ui::Label(ui::Point(0, (WINDOWH/2)-6), ui::Point(WINDOWW, 12), "Error");
+			errorLabel = new ui::Label(ui::Point(0, (WINDOWH/2)-6), ui::Point(WINDOWW, 12), "错误");
 			AddComponent(errorLabel);
 		}
 		if (!sender->GetSavesLoaded())
 		{
-			errorLabel->SetText("Loading...");
+			errorLabel->SetText("加载中...");
 			loadingSpinner->Visible = true;
 		}
 		else
@@ -655,7 +655,7 @@ void SearchView::NotifySelectedChanged(SearchModel * sender)
 		pageCountLabel->Visible = false;
 		if (published <= selected.size()/2)
 		{
-			unpublishSelected->SetText("Publish");
+			unpublishSelected->SetText("发布");
 			publishButtonShown = true;
 		}
 		else
