@@ -77,7 +77,7 @@ static std::vector<menu_section> LoadMenus()
 {
 	return
 	std::vector<menu_section>{
-		{0xE041, String("Walls"), 0, 1},
+		{0xE041, String("墙壁"), 0, 1},
 		{0xE042, String("Electronics"), 0, 1},
 		{0xE056, String("Powered Materials"), 0, 1},
 		{0xE019, String("Sensors"), 0, 1},
@@ -90,8 +90,8 @@ static std::vector<menu_section> LoadMenus()
 		{0xE046, String("Radioactive"), 0, 1},
 		{0xE04C, String("Special"), 0, 1},
 		{0xE052, String("Game Of Life"), 0, 1},
-		{0xE057, String("Tools"), 0, 1},
-		{0xE067, String("Favorites"), 0, 1},
+		{0xE057, String("工具"), 0, 1},
+		{0xE067, String("收藏"), 0, 1},
 		{0xE064, String("Decoration tools"), 0, 1},
 	};
 }
