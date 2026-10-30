@@ -104,7 +104,7 @@ ServerSaveActivity::ServerSaveActivity(std::unique_ptr<SaveInfo> newSave, OnUplo
 	}
 	AddComponent(publishedCheckbox);
 
-	pausedCheckbox = new ui::Checkbox(ui::Point(160, 45), ui::Point(55, 16), "Paused", "");
+	pausedCheckbox = new ui::Checkbox(ui::Point(160, 45), ui::Point(55, 16), "已暂停", "");
 	pausedCheckbox->SetChecked(save->GetGameSave()->paused);
 	AddComponent(pausedCheckbox);
 
