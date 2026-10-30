@@ -77,7 +77,7 @@ public:
 		direction->SetSnapPoints(5, 5, 2);
 		AddComponent(direction);
 
-		ui::Button * okayButton = new ui::Button(ui::Point(0, Size.Y - 17), ui::Point(Size.X, 17), "OK");
+		ui::Button * okayButton = new ui::Button(ui::Point(0, Size.Y - 17), ui::Point(Size.X, 17), "确定");
 		okayButton->Appearance.HorizontalAlign = ui::Appearance::AlignCentre;
 		okayButton->Appearance.VerticalAlign = ui::Appearance::AlignMiddle;
 		okayButton->Appearance.BorderInactive = ui::Colour(200, 200, 200);
@@ -114,7 +114,7 @@ OptionsView::OptionsView() : ui::Window(ui::Point(-1, -1), ui::Point(320, 340))
 	};
 	
 	{
-		auto *label = new ui::Label(ui::Point(4, 1), ui::Point(Size.X-8, 22), "Settings");
+		auto *label = new ui::Label(ui::Point(4, 1), ui::Point(Size.X-8, 22), "设置");
 		label->SetTextColour(style::Colour::InformationTitle);
 		label->Appearance.HorizontalAlign = ui::Appearance::AlignLeft;
 		label->Appearance.VerticalAlign = ui::Appearance::AlignMiddle;
@@ -490,7 +490,7 @@ OptionsView::OptionsView() : ui::Window(ui::Point(-1, -1), ui::Point(320, 340))
 	});
 
 	{
-		ui::Button *ok = new ui::Button(ui::Point(0, Size.Y-16), ui::Point(Size.X, 16), "OK");
+		ui::Button *ok = new ui::Button(ui::Point(0, Size.Y-16), ui::Point(Size.X, 16), "确定");
 		ok->SetActionCallback({ [this] {
 			c->Exit();
 		} });
