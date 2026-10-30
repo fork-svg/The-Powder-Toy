@@ -226,7 +226,7 @@ GameView::GameView():
 	scrollBar->Appearance.VerticalAlign = ui::Appearance::AlignMiddle;
 	AddComponent(scrollBar);
 
-	searchButton = new ui::Button(ui::Point(currentX, Size.Y-16), ui::Point(17, 15), "", "Find & open a simulation. Hold Ctrl to load offline saves.");  //Open
+	searchButton = new ui::Button(ui::Point(currentX, Size.Y-16), ui::Point(17, 15), "", "查找并打开模拟。按住 Ctrl 加载离线保存。");  //Open
 	searchButton->SetIcon(IconOpen);
 	currentX+=18;
 	searchButton->SetTogglable(false);
@@ -238,14 +238,14 @@ GameView::GameView():
 	} });
 	AddComponent(searchButton);
 
-	reloadButton = new ui::Button(ui::Point(currentX, Size.Y-16), ui::Point(17, 15), "", "Reload the simulation");
+	reloadButton = new ui::Button(ui::Point(currentX, Size.Y-16), ui::Point(17, 15), "", "重新加载模拟");
 	reloadButton->SetIcon(IconReload);
 	reloadButton->Appearance.Margin.Left+=2;
 	currentX+=18;
 	reloadButton->SetActionCallback({ [this] { c->ReloadSim(); }, [this] { c->OpenSavePreview(); } });
 	AddComponent(reloadButton);
 
-	saveSimulationButton = new SplitButton(ui::Point(currentX, Size.Y-16), ui::Point(150, 15), "[untitled simulation]", "", "", 19);
+	saveSimulationButton = new SplitButton(ui::Point(currentX, Size.Y-16), ui::Point(150, 15), "[未命名模拟]", "", "", 19);
 	saveSimulationButton->Appearance.HorizontalAlign = ui::Appearance::AlignLeft;
 	saveSimulationButton->SetIcon(IconSave);
 	currentX+=151;
@@ -282,20 +282,20 @@ GameView::GameView():
 
 	ResetVoteButtons();
 
-	tagSimulationButton = new ui::Button(ui::Point(currentX, Size.Y-16), ui::Point(WINDOWW - 402, 15), "[no tags set]", "Add simulation tags");
+	tagSimulationButton = new ui::Button(ui::Point(currentX, Size.Y-16), ui::Point(WINDOWW - 402, 15), "[未设置标签]", "添加模拟标签");
 	tagSimulationButton->Appearance.HorizontalAlign = ui::Appearance::AlignLeft;
 	tagSimulationButton->SetIcon(IconTag);
 	//currentX+=252;
 	tagSimulationButton->SetActionCallback({ [this] { c->OpenTags(); } });
 	AddComponent(tagSimulationButton);
 
-	clearSimButton = new ui::Button(ui::Point(Size.X-159, Size.Y-16), ui::Point(17, 15), "", "Erase everything");
+	clearSimButton = new ui::Button(ui::Point(Size.X-159, Size.Y-16), ui::Point(17, 15), "", "清除所有内容");
 	clearSimButton->SetIcon(IconNew);
 	clearSimButton->Appearance.Margin.Left+=2;
 	clearSimButton->SetActionCallback({ [this] { c->ClearSim(); } });
 	AddComponent(clearSimButton);
 
-	loginButton = new SplitButton(ui::Point(Size.X-141, Size.Y-16), ui::Point(92, 15), "[sign in]", "Sign into simulation server", "Edit Profile", 19);
+	loginButton = new SplitButton(ui::Point(Size.X-141, Size.Y-16), ui::Point(92, 15), "[登录]", "登录到模拟服务器", "编辑资料", 19);
 	loginButton->Appearance.HorizontalAlign = ui::Appearance::AlignLeft;
 	loginButton->SetIcon(IconLogin);
 	loginButton->SetSplitActionCallback({
@@ -304,13 +304,13 @@ GameView::GameView():
 	});
 	AddComponent(loginButton);
 
-	simulationOptionButton = new ui::Button(ui::Point(Size.X-48, Size.Y-16), ui::Point(15, 15), "", "Settings");
+	simulationOptionButton = new ui::Button(ui::Point(Size.X-48, Size.Y-16), ui::Point(15, 15), "", "设置");
 	simulationOptionButton->SetIcon(IconSimulationSettings);
 	simulationOptionButton->Appearance.Margin.Left+=2;
 	simulationOptionButton->SetActionCallback({ [this] { c->OpenOptions(); } });
 	AddComponent(simulationOptionButton);
 
-	displayModeButton = new ui::Button(ui::Point(Size.X-32, Size.Y-16), ui::Point(15, 15), "", "Renderer options");
+	displayModeButton = new ui::Button(ui::Point(Size.X-32, Size.Y-16), ui::Point(15, 15), "", "渲染器选项");
 	displayModeButton->SetIcon(IconRenderSettings);
 	displayModeButton->Appearance.Margin.Left+=2;
 	displayModeButton->SetActionCallback({ [this] { c->OpenRenderOptions(); } });
@@ -751,7 +751,7 @@ void GameView::NotifyUserChanged(GameModel * sender)
 	auto user = sender->GetUser();
 	if (!user)
 	{
-		loginButton->SetText("[sign in]");
+		loginButton->SetText("[登录]");
 		loginButton->SetShowSplit(false);
 		loginButton->SetRightToolTip("Sign in to simulation server");
 	}
@@ -886,12 +886,12 @@ void GameView::NotifySaveChanged(GameModel * sender)
 			}
 			else
 			{
-				tagSimulationButton->SetText("[no tags set]");
+				tagSimulationButton->SetText("[未设置标签]");
 			}
 		}
 		else
 		{
-			tagSimulationButton->SetText("[no tags set]");
+			tagSimulationButton->SetText("[未设置标签]");
 		}
 		currentSaveType = 1;
 		int saveID = sender->GetSave()->GetID();
@@ -913,13 +913,13 @@ void GameView::NotifySaveChanged(GameModel * sender)
 		downVoteButton->Appearance.BackgroundDisabled = (ui::Colour(0, 0, 0));
 		downVoteButton->Appearance.BorderDisabled = ui::Colour(100, 100, 100);
 		tagSimulationButton->Enabled = false;
-		tagSimulationButton->SetText("[no tags set]");
+		tagSimulationButton->SetText("[未设置标签]");
 		currentSaveType = 2;
 	}
 	else
 	{
 		saveSimulationButton->SetShowSplit(false);
-		saveSimulationButton->SetText("[untitled simulation]");
+		saveSimulationButton->SetText("[未命名模拟]");
 		reloadButton->Enabled = false;
 		upVoteButton->Enabled = false;
 		upVoteButton->Appearance.BackgroundDisabled = (ui::Colour(0, 0, 0));
@@ -928,7 +928,7 @@ void GameView::NotifySaveChanged(GameModel * sender)
 		downVoteButton->Appearance.BackgroundDisabled = (ui::Colour(0, 0, 0));
 		downVoteButton->Appearance.BorderDisabled = ui::Colour(100, 100, 100),
 		tagSimulationButton->Enabled = false;
-		tagSimulationButton->SetText("[no tags set]");
+		tagSimulationButton->SetText("[未设置标签]");
 		currentSaveType = 0;
 	}
 	saveSimulationButton->Enabled = (saveSimulationButtonEnabled && saveReuploadAllowed) || ctrlBehaviour;
@@ -2090,7 +2090,7 @@ void GameView::disableCtrlBehaviour()
 		searchButton->Appearance.BackgroundInactive = ui::Colour(0, 0, 0);
 		searchButton->Appearance.BackgroundHover = ui::Colour(20, 20, 20);
 		searchButton->Appearance.TextInactive = searchButton->Appearance.TextHover = ui::Colour(255, 255, 255);
-		searchButton->SetToolTip("Find & open a simulation. Hold Ctrl to load offline saves.");
+		searchButton->SetToolTip("查找并打开模拟。按住 Ctrl 加载离线保存。");
 		if (currentSaveType == 2)
 			saveSimulationButton->SetShowSplit(false);
 	}
