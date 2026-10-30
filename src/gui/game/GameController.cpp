@@ -270,7 +270,7 @@ void GameController::Install()
 		new ConfirmPrompt("Install " + String(APPNAME), "Do you wish to install " + String(APPNAME) + " on this computer?\nThis allows you to open save files and saves directly from the website.", { [] {
 			if (Platform::Install())
 			{
-				new InformationMessage("成功", "Installation completed", false);
+				new InformationMessage("Success", "Installation completed", false);
 			}
 			else
 			{
@@ -1241,7 +1241,7 @@ void GameController::OpenLocalSaveWindow(bool asCurrent)
 	auto gameSave = sim->Save(gameModel->GetIncludePressure() != gameView->ShiftBehaviour(), RES.OriginRect());
 	if(!gameSave)
 	{
-		new ErrorMessage("错误", "Unable to build save.");
+		new ErrorMessage("Error", "Unable to build save.");
 	}
 	else
 	{
@@ -1278,9 +1278,9 @@ void GameController::OpenLocalSaveWindow(bool asCurrent)
 			tempSave->SetGameSave(std::move(gameSave));
 			gameModel->SetSaveFile(std::move(tempSave), gameView->ShiftBehaviour());
 			if (saveData.size() == 0)
-				new ErrorMessage("错误", "Unable to serialize game data.");
+				new ErrorMessage("Error", "Unable to serialize game data.");
 			else if (!Platform::WriteFile(saveData, gameModel->GetSaveFile()->GetName()))
-				new ErrorMessage("错误", "Unable to write save file.");
+				new ErrorMessage("Error", "Unable to write save file.");
 			else
 				gameModel->SetInfoTip("Saved Successfully");
 		}
@@ -1392,7 +1392,7 @@ void GameController::OpenTags()
 	}
 	else
 	{
-		new ErrorMessage("错误", "No save open");
+		new ErrorMessage("Error", "No save open");
 	}
 }
 
@@ -1451,7 +1451,7 @@ void GameController::OpenSaveWindow()
 		auto gameSave = sim->Save(gameModel->GetIncludePressure() != gameView->ShiftBehaviour(), RES.OriginRect());
 		if(!gameSave)
 		{
-			new ErrorMessage("错误", "Unable to build save.");
+			new ErrorMessage("Error", "Unable to build save.");
 		}
 		else
 		{
@@ -1481,7 +1481,7 @@ void GameController::OpenSaveWindow()
 	}
 	else
 	{
-		new ErrorMessage("错误", "You need to login to upload saves.");
+		new ErrorMessage("Error", "You need to login to upload saves.");
 	}
 }
 
@@ -1494,7 +1494,7 @@ void GameController::SaveAsCurrent()
 		auto gameSave = sim->Save(gameModel->GetIncludePressure() != gameView->ShiftBehaviour(), RES.OriginRect());
 		if(!gameSave)
 		{
-			new ErrorMessage("错误", "Unable to build save.");
+			new ErrorMessage("Error", "Unable to build save.");
 		}
 		else
 		{
@@ -1520,7 +1520,7 @@ void GameController::SaveAsCurrent()
 	}
 	else
 	{
-		new ErrorMessage("错误", "You need to login to upload saves.");
+		new ErrorMessage("Error", "You need to login to upload saves.");
 	}
 }
 
