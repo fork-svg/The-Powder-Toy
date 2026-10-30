@@ -52,7 +52,7 @@ LocalBrowserView::LocalBrowserView():
 
 	undeleteButton->SetActionCallback({ [this] { c->RescanStamps(); } });
 
-	removeSelected = new ui::Button(ui::Point(((WINDOWW-100)/2), WINDOWH-18), ui::Point(100, 16), "Delete");
+	removeSelected = new ui::Button(ui::Point(((WINDOWW-100)/2), WINDOWH-18), ui::Point(100, 16), "删除");
 	removeSelected->Visible = false;
 	removeSelected->SetActionCallback({ [this] { c->RemoveSelected(); } });
 
