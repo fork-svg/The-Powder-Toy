@@ -34,7 +34,7 @@ LocalSaveActivity::LocalSaveActivity(std::unique_ptr<SaveFile> newSave, OnSaved 
 	AddComponent(filenameField);
 	FocusComponent(filenameField);
 
-	ui::Button * cancelButton = new ui::Button(ui::Point(0, Size.Y-16), ui::Point(Size.X-75, 16), "Cancel");
+	ui::Button * cancelButton = new ui::Button(ui::Point(0, Size.Y-16), ui::Point(Size.X-75, 16), "取消");
 	cancelButton->Appearance.HorizontalAlign = ui::Appearance::AlignLeft;
 	cancelButton->Appearance.VerticalAlign = ui::Appearance::AlignMiddle;
 	cancelButton->Appearance.BorderInactive = ui::Colour(200, 200, 200);
@@ -44,7 +44,7 @@ LocalSaveActivity::LocalSaveActivity(std::unique_ptr<SaveFile> newSave, OnSaved 
 	AddComponent(cancelButton);
 	SetCancelButton(cancelButton);
 
-	ui::Button * okayButton = new ui::Button(ui::Point(Size.X-76, Size.Y-16), ui::Point(76, 16), "Save");
+	ui::Button * okayButton = new ui::Button(ui::Point(Size.X-76, Size.Y-16), ui::Point(76, 16), "保存");
 	okayButton->Appearance.HorizontalAlign = ui::Appearance::AlignLeft;
 	okayButton->Appearance.VerticalAlign = ui::Appearance::AlignMiddle;
 	okayButton->Appearance.TextInactive = style::Colour::InformationTitle;
@@ -78,7 +78,7 @@ void LocalSaveActivity::Save()
 {
 	if (filenameField->GetText().Contains('/') || filenameField->GetText().BeginsWith("."))
 	{
-		new ErrorMessage("Error", "Invalid filename.");
+		new ErrorMessage("错误", "Invalid filename.");
 	}
 	else if (filenameField->GetText().length())
 	{
@@ -98,7 +98,7 @@ void LocalSaveActivity::Save()
 	}
 	else
 	{
-		new ErrorMessage("Error", "You must specify a filename.");
+		new ErrorMessage("错误", "You must specify a filename.");
 	}
 }
 
@@ -120,9 +120,9 @@ void LocalSaveActivity::saveWrite(ByteString finalFilename)
 	std::vector<char> saveData;
 	std::tie(std::ignore, saveData) = save->GetGameSave()->Serialise();
 	if (saveData.size() == 0)
-		new ErrorMessage("Error", "Unable to serialize game data.");
+		new ErrorMessage("错误", "Unable to serialize game data.");
 	else if (!Platform::WriteFile(saveData, finalFilename))
-		new ErrorMessage("Error", "Unable to write save file.");
+		new ErrorMessage("错误", "Unable to write save file.");
 	else
 	{
 		if (onSaved)
