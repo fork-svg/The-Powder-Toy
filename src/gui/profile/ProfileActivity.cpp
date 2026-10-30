@@ -22,7 +22,7 @@ ProfileActivity::ProfileActivity(ByteString username) :
 	auto user = Client::Ref().GetAuthUser();
 	editable = user && user->Username == username;
 
-	ui::Button * closeButton = new ui::Button(ui::Point(0, Size.Y-15), ui::Point(Size.X, 15), "Close");
+	ui::Button * closeButton = new ui::Button(ui::Point(0, Size.Y-15), ui::Point(Size.X, 15), "关闭");
 	closeButton->SetActionCallback({ [this] {
 		Exit();
 	} });
@@ -30,12 +30,12 @@ ProfileActivity::ProfileActivity(ByteString username) :
 	{
 		closeButton->Size.X = (Size.X/2)+1;
 
-		ui::Button * saveButton = new ui::Button(ui::Point(Size.X/2, Size.Y-15), ui::Point(Size.X/2, 15), "Save");
+		ui::Button * saveButton = new ui::Button(ui::Point(Size.X/2, Size.Y-15), ui::Point(Size.X/2, 15), "保存");
 		saveButton->SetActionCallback({ [this, saveButton] {
 			if (!loading && !saving && editable)
 			{
 				saveButton->Enabled = false;
-				saveButton->SetText("Saving...");
+				saveButton->SetText("保存中...");
 				saving = true;
 				info.location = location->GetText();
 				info.biography = bio->GetText();
@@ -202,7 +202,7 @@ void ProfileActivity::OnTick()
 {
 	if (doError)
 	{
-		new ErrorMessage("Error", doErrorMessage, { [this]() {
+		new ErrorMessage("错误", doErrorMessage, { [this]() {
 			Exit();
 		} });
 	}
